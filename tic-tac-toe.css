@@ -1,0 +1,43 @@
+#board {
+    background-color: coral;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: 1px solid black; 
+    height: 100%;
+    width: auto;
+}
+
+button {
+    height: 50%;
+    width: 50%;
+    margin: auto; 
+}
+
+.marker {
+    background-color: darkgray;
+}
+
+.cell {
+    height: 50%;
+    width: 50%;
+    background-color: bisque;
+}
+
+#main {
+    display: block;
+    height: 500px;
+    width: 75%;
+    margin: auto;
+}
+
+
+body {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    box-sizing: border-box;
+}
