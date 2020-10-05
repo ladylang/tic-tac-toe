@@ -1,5 +1,5 @@
 #board {
-    background-color: coral;
+    background-color: lightcyan;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -14,6 +14,7 @@ button {
     margin: auto; 
 }
 
+
 .marker {
     background-color: darkgray;
 }
@@ -21,7 +22,7 @@ button {
 .cell {
     height: 50%;
     width: 50%;
-    background-color: bisque;
+    background-color: #ffe4c4;
 }
 
 #main {
