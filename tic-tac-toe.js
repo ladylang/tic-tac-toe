@@ -46,6 +46,7 @@ const createPlayers = (playerNum, user) => {
     let userName = user;
     let marker = "";
 
+    // switches between players
     if (playerNum == 1) {
         marker = "X";
     } else {
@@ -64,8 +65,8 @@ const game = (() => {
     const player1Input = document.getElementById("player1");
     const player2Input = document.getElementById("player2");
 
+    // check for 2 name inputs before allowed to start game    
     function getPlayerInput() {
-        // check for 2 name inputs before allowed to start game
         player1Input.addEventListener ("keyup", () => {
             if (player1Input.value != "" && player2Input.value != "") {
                 startBtn.disabled = false;
@@ -84,14 +85,16 @@ const game = (() => {
 
         // start game
         startBtn.addEventListener("click", () => {
-            playGame(player1Input.value, player2Input.value);
+            playGame(player1Input.value, player2Input.value).startGame();
         });
     };
     
     getPlayerInput();
 
+
     function playGame(player1Name, player2Name) {
         const btns = document.getElementById("board").querySelectorAll(".cell")
+        const displayTurn = document.getElementById("turn");
 
         // change button states for start of game
         function startGame() {
@@ -106,8 +109,6 @@ const game = (() => {
                 button.addEventListener("click", takeTurn);
             });
         };
-
-        startGame();
         
 
         // get player info and create player
@@ -119,6 +120,9 @@ const game = (() => {
         // sets starting player
         let currentPlayer = player1;
 
+        // display who's turn it is
+        displayTurn.innerHTML = currentPlayer.userName + "'s Turn";
+
         // change player
         function switchPlayer() {
             if (currentPlayer.userName === player1.userName) {
@@ -126,15 +130,20 @@ const game = (() => {
             } else {
                 currentPlayer = player1;
             }
+            
+            displayTurn.innerHTML = currentPlayer.userName + "'s Turn";
         };
         
         let turn = 1;
         let winner = false;
 
         function takeTurn() {
-            // runs the turn and check for winner
             console.log(turn);
+
+            // log the action taken
             logTurn(this);
+
+            // after turn 5, check for winner
             if (turn >= 5) {
                 winner = gameBoard.checkBoard(currentPlayer.marker);
                 console.log(winner);
@@ -165,11 +174,13 @@ const game = (() => {
             let index = button.id;
             gameBoard.board[index] = currentPlayer.marker;
             console.log(gameBoard.board);
-
         };
 
         function endGame() {
             console.log("Winner is " + currentPlayer.userName);
+
+            const displayWinner = document.getElementById("winner");
+            displayWinner.innerHTML = "Winner is " + currentPlayer.userName;
             btns.forEach(button => button.disabled = true);
 
         }
@@ -191,6 +202,8 @@ const game = (() => {
             player2Input.value = "";
             console.log(turn);
         };
+
+        return {startGame};
     };
 })();
 
