@@ -164,11 +164,6 @@ const game = (() => {
             // display click on board, disable btn and change color
             button.innerHTML = currentPlayer.marker;
             button.disabled = "true";
-            if (button.innerHTML == "X") {
-                button.style.backgroundColor = "green";
-            } else if (button.innerHTML == "O") {
-                button.style.backgroundColor = "red";
-            }
 
             // log click into the board object
             let index = button.id;
@@ -193,7 +188,6 @@ const game = (() => {
             winner = false;
             btns.forEach((button) => {
                 button.innerHTML = "";
-                button.style.backgroundColor = "#ffe4c4";
                 button.disabled = true;
                 button.removeEventListener("click", takeTurn);
             });
